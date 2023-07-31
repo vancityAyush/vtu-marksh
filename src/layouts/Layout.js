@@ -4,24 +4,23 @@ export default function Layout({children}) {
     return (
         <>
             <NextSeo
-                title="PySphere"
+                title="VTU Marksh"
                 description="PySphere revolutionizes digital transformation for startups and established businesses, empowering growth through innovative solutions and expert guidance."
-                canonical="https://www.pyshere.in/"
+                canonical="https://vtumarksh.vercel.app/"
                 openGraph={{
-                    url: "https://www.pyshere.in/",
-                    title: "PySphere",
-                    description:
-                        "PySphere revolutionizes digital transformation for startups and established businesses, empowering growth through innovative solutions and expert guidance.",
+                    url: "https://vtumarksh.vercel.app/",
+                    title: "VTU Marksh",
+                    description: "Get your Marks Card here",
                     type: "website",
-                    site_name: "PySphere",
+                    site_name: "VTU Marksh",
                     images: [
-                        {
-                            url: "https://pysphere.vercel.app/assets/seo/pysphere.png",
-                            width: 800,
-                            height: 600,
-                            alt: "PySphere Technologies",
-                            type: "image/png",
-                        },
+                        // {
+                        //     url: "https://pysphere.vercel.app/assets/seo/pysphere.png",
+                        //     width: 800,
+                        //     height: 600,
+                        //     alt: "PySphere Technologies",
+                        //     type: "image/png",
+                        // },
                     ],
                 }}
             />
