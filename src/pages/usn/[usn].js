@@ -1,4 +1,4 @@
-import {token} from "@/lib/constants";
+import {credits, token} from "@/lib/constants";
 
 export default function UserPage({data}) {
     console.log(data);
@@ -12,25 +12,29 @@ export default function UserPage({data}) {
                         return (
                             <div key={sem}>
                                 <h1>{sem}</h1>
+                                <h2>SGPA : {
+                                    calculateSGPA(sem_result)
+                                }
+                                </h2>
                                 {
                                     sem_result.map((exam) => {
                                         return (
                                             <div key={exam}>
                                                 <h2>{exam.resultMonthYear}</h2>
                                                 {
-                                                    exam.subjects.map((subject) => {
-                                                            return (
-                                                                <div key={subject.subjectCode}>
-                                                                    <h3>{subject.subjectCode}</h3>
-                                                                    <h3>{subject.subjectName}</h3>
-                                                                    <h3>{subject.internalMarks}</h3>
-                                                                    <h3>{subject.externalMarks}</h3>
-                                                                    <h3>{subject.totalMarks}</h3>
-                                                                    <h3>{subject.result}</h3>
-                                                                </div>
-                                                            );
-                                                        }
-                                                    )
+                                                    // exam.subjects.map((subject) => {
+                                                    //         return (
+                                                    //             <div key={subject.subjectCode}>
+                                                    //                 <h3>{subject.subjectCode}</h3>
+                                                    //                 <h3>{subject.subjectName}</h3>
+                                                    //                 <h3>{subject.internalMarks}</h3>
+                                                    //                 <h3>{subject.externalMarks}</h3>
+                                                    //                 <h3>{subject.totalMarks}</h3>
+                                                    //                 <h3>{subject.result}</h3>
+                                                    //             </div>
+                                                    //         );
+                                                    //     }
+                                                    // )
                                                 }
                                             </div>
                                         );
@@ -45,6 +49,24 @@ export default function UserPage({data}) {
     );
 }
 
+function pointsToGrade(points) {
+    if (points >= 90) {
+        return 10;
+    } else if (points >= 80) {
+        return 9;
+    } else if (points >= 70) {
+        return 8;
+    } else if (points >= 60) {
+        return 7;
+    } else if (points >= 50) {
+        return 6;
+    } else if (points >= 40) {
+        return 4;
+    } else {
+        return 0;
+    }
+}
+
 function calculateSGPA(sem_result) {
     const subjects = new Map();
     for (const exam of sem_result) {
@@ -52,8 +74,13 @@ function calculateSGPA(sem_result) {
             subjects.set(subject.subjectCode, subject);
         }
     }
-
-
+    let totalCredits = 0;
+    let totalPoints = 0;
+    for (const subject of subjects.values()) {
+        totalCredits += credits.get(subject.subjectCode) * pointsToGrade(subject.total);
+        totalPoints += credits.get(subject.subjectCode);
+    }
+    return totalCredits / totalPoints;
 }
 
 export async function getServerSideProps({params}) {
