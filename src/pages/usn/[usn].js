@@ -5,7 +5,18 @@ export default function UserPage({data}) {
 
     return (
         <div>
-            <h1>Your USN: {data[0].usn}</h1>
+            {data.map((result) => (
+                <div key={result.usn}>
+                    <h1>{result.usn}</h1>
+                    <h1>{result.name}</h1>
+                    <h1>{result.semester}</h1>
+                    <h1>{result.resultMonthYear}</h1>
+                    <h1>{result.resultDeclaredDate}</h1>
+                    <h1>{result.resultStatus}</h1>
+                    <h1>{result.resultType}</h1>
+                </div>
+            ))}
+
         </div>
     );
 }
