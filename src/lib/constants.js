@@ -1,6 +1,7 @@
 export const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDkxZTRjZTM4MzZiNGE4YWYwMjg1YyIsImF2YXRhciI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDR2MGt1ekN0MTBsNVZkMHBxWC03QzlpZ0tzYXhRNWVKMTRUbWJ5M0E9czk2LWMiLCJmdWxsTmFtZSI6IlNpZGRoYXJ0aCBNaXNocmEiLCJlbWFpbCI6InNpZGRoYXJ0aG1pc2hyYTkxOEBnbWFpbC5jb20iLCJzY29wZSI6WyJ1c2VyIl0sInVzbiI6IjFBTTIwQ1MxODUiLCJjbGFzc0lkIjoiMUFNMjBDUyIsImNvbGxlZ2UiOiJBTUMgRU5HSU5FRVJJTkcgQ09MTEVHRSAiLCJzY2hlbWUiOiIyMDE4Iiwic2VtZXN0ZXIiOiJWIiwiYnJhbmNoIjoiQ1NFIiwidHlwZSI6InN0dWRlbnQiLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTY5MDYyOTY0OSwiZXhwIjoxNjkxMjM0NDQ5fQ.ZgG7YWEil3ch2LxTatMkoTvyc9fKGykV_Jkfocpd8nE";
 
 export const credit = new Map([
+
     ["18MAT11", 4],
     ["18PHY12", 4],
     ["18ELE13", 3],
@@ -10,6 +11,70 @@ export const credit = new Map([
     ["18ELEL17", 1],
     ["18CIVL18", 1],
 
+    ["18MAT21", 4],
+    ["18CHE22", 4],
+    ["18CPS23", 3],
+    ["18ELN24", 3],
+    ["18ME24", 3],
+    ["18CHEL26", 1],
+    ["18CPSL27", 1],
+    ["18EGH28", 1],
 
+    ["18MAT31", 3],
+    ["18CS32", 4],
+    ["18CS33", 3],
+    ["18CS34", 3],
+    ["18CS35", 3],
+    ["18CS36", 3],
+    ["18CSL37", 2],
+    ["18CSL38", 2],
+    ["18KVK39", 1],
+    ["18KAK39", 1],
+    ["18CPC39", 1]
 
+    ["18CS41", 3],
+    ["18CS42", 4],
+    ["18CS43", 3],
+    ["18CS44", 3],
+    ["18CS45", 3],
+    ["18CS46", 3],
+    ["18CSL47", 2],
+    ["18CSL48", 2],
+    ["18KVK49", 1],
+    ["18KAK49", 1],
+    ["18CPC49", 1],
+
+    ["18CS51", 3],
+    ["18CS52", 4],
+    ["18CS53", 4],
+    ["18CS54", 3],
+    ["18CS55", 3],
+    ["18CS56", 3],
+    ["18CSL57", 2],
+    ["18CSL58", 2],
+    ["18CIV59", 1],
+
+    ["18CS61", 4],
+    ["18CS62", 4],
+    ["18CS63", 4],
+    ["18CS64X", 3],
+    ["18CS65X", 3],
+    ["18CSL66", 2],
+    ["18CSL67", 2],
+    ["18CSMP68", 2],
+
+    ["18CS71", 4],
+    ["18CS72", 4],
+    ["18CS73X", 3],
+    ["18CS74X", 3],
+    ["18CSL75X", 3],
+    ["18CSL76", 2],
+    ["18CSP77", 1],
+
+    ["18CS81", 3],
+    ["18CS82X", 3],
+    ["18CSP83", 8],
+    ["18CSS84", 1],
+    ["18CSI85", 3],
+    
 ]);
