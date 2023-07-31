@@ -42,7 +42,7 @@ export const credits = new Map([
     ["18CSL48", 2],
     ["18KVK49", 1],
     ["18KAK49", 1],
-    ["18CPC49", 1],
+    ["18CPC39", 1],
 
     ["18CS51", 3],
     ["18CS52", 4],
