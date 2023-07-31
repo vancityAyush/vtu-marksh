@@ -1,24 +1,59 @@
 import {token} from "@/lib/constants";
 
 export default function UserPage({data}) {
-    console.log(data.usn);
+    console.log(data);
 
     return (
         <div>
-            {data.map((result) => (
-                <div key={result.usn}>
-                    <h1>{result.usn}</h1>
-                    <h1>{result.name}</h1>
-                    <h1>{result.semester}</h1>
-                    <h1>{result.resultMonthYear}</h1>
-                    <h1>{result.resultDeclaredDate}</h1>
-                    <h1>{result.resultStatus}</h1>
-                    <h1>{result.resultType}</h1>
-                </div>
-            ))}
-
+            <h1>{data.usn}</h1>
+            <h1>{data.name}</h1>
+            {
+                Object.entries(data.sem_results).map(([sem, sem_result]) => {
+                        return (
+                            <div key={sem}>
+                                <h1>{sem}</h1>
+                                {
+                                    sem_result.map((exam) => {
+                                        return (
+                                            <div key={exam}>
+                                                <h2>{exam.resultMonthYear}</h2>
+                                                {
+                                                    exam.subjects.map((subject) => {
+                                                            return (
+                                                                <div key={subject.subjectCode}>
+                                                                    <h3>{subject.subjectCode}</h3>
+                                                                    <h3>{subject.subjectName}</h3>
+                                                                    <h3>{subject.internalMarks}</h3>
+                                                                    <h3>{subject.externalMarks}</h3>
+                                                                    <h3>{subject.totalMarks}</h3>
+                                                                    <h3>{subject.result}</h3>
+                                                                </div>
+                                                            );
+                                                        }
+                                                    )
+                                                }
+                                            </div>
+                                        );
+                                    })
+                                }
+                            </div>
+                        );
+                    }
+                )
+            }
         </div>
     );
+}
+
+function calculateSGPA(sem_result) {
+    const subjects = new Map();
+    for (const exam of sem_result) {
+        for (const subject of exam.subjects) {
+            subjects.set(subject.subjectCode, subject);
+        }
+    }
+
+
 }
 
 export async function getServerSideProps({params}) {
@@ -33,15 +68,22 @@ export async function getServerSideProps({params}) {
 
 async function handler(usn) {
     const response = await fetchResult(usn);
-    const result = await response.json();
-    console.log(result);
-    const sub_result = [];
-    for (const subject of result) {
-        const sem = await fetchSem({usn: subject.usn, yearmonth: subject.resultMonthYear, sem: subject.semester});
+    const response_json = await response.json();
+    const result = {
+        usn: usn,
+        name: response_json[0].name,
+    };
+    const sem_results = new Map();
+    for (const semExam of response_json) {
+        const sem = await fetchSem({usn: semExam.usn, yearmonth: semExam.resultMonthYear, sem: semExam.semester});
         const sem_result = await sem.json();
-        subject.result = sem_result.subjects;
+        if (!sem_results.has(semExam.semester)) {
+            sem_results.set(semExam.semester, []);
+        }
+        sem_results.get(semExam.semester).push(sem_result);
     }
-    return await result;
+    result.sem_results = Object.fromEntries(sem_results);
+    return result;
 }
 
 async function fetchResult(usn) {
