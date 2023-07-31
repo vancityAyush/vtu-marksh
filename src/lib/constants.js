@@ -17,7 +17,7 @@ export const credit = new Map([
     ["18ELN24", 3],
     ["18ME25", 3],
     ["18CHEL26", 1],
-    ["18CPSL27", 1],
+    ["18CPL27", 1],
     ["18EGH28", 1],
 
     ["18MAT31", 3],
@@ -32,7 +32,7 @@ export const credit = new Map([
     ["18KAK39", 1],
     ["18CPC39", 1]
 
-    ["18CS41", 3],
+    ["18MAT41", 3],
     ["18CS42", 4],
     ["18CS43", 3],
     ["18CS44", 3],
