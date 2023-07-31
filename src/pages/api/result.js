@@ -9,10 +9,9 @@ export default async function handler(req, res) {
     for (const subject of result) {
         const sem = await fetchSem({usn: subject.usn, yearmonth: subject.resultMonthYear, sem: subject.semester});
         const sem_result = await sem.json();
-        sub_result.push(sem_result);
+        subject.result = sem_result.subjects;
         console.log(sem_result);
     }
-    // result.sub_result = sub_result;
 
     res.status(200).json(result);
 }
