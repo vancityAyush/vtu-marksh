@@ -1,6 +1,6 @@
 export const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDkxZTRjZTM4MzZiNGE4YWYwMjg1YyIsImF2YXRhciI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDR2MGt1ekN0MTBsNVZkMHBxWC03QzlpZ0tzYXhRNWVKMTRUbWJ5M0E9czk2LWMiLCJmdWxsTmFtZSI6IlNpZGRoYXJ0aCBNaXNocmEiLCJlbWFpbCI6InNpZGRoYXJ0aG1pc2hyYTkxOEBnbWFpbC5jb20iLCJzY29wZSI6WyJ1c2VyIl0sInVzbiI6IjFBTTIwQ1MxODUiLCJjbGFzc0lkIjoiMUFNMjBDUyIsImNvbGxlZ2UiOiJBTUMgRU5HSU5FRVJJTkcgQ09MTEVHRSAiLCJzY2hlbWUiOiIyMDE4Iiwic2VtZXN0ZXIiOiJWIiwiYnJhbmNoIjoiQ1NFIiwidHlwZSI6InN0dWRlbnQiLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTY5MDYyOTY0OSwiZXhwIjoxNjkxMjM0NDQ5fQ.ZgG7YWEil3ch2LxTatMkoTvyc9fKGykV_Jkfocpd8nE";
 
-export const credit = new Map([
+export const credits = new Map([
 
     ["18MAT11", 4],
     ["18PHY12", 4],
@@ -17,7 +17,7 @@ export const credit = new Map([
     ["18ELN24", 3],
     ["18ME25", 3],
     ["18CHEL26", 1],
-    ["18CPSL27", 1],
+    ["18CPL27", 1],
     ["18EGH28", 1],
 
     ["18MAT31", 3],
@@ -30,9 +30,9 @@ export const credit = new Map([
     ["18CSL38", 2],
     ["18KVK39", 1],
     ["18KAK39", 1],
-    ["18CPC39", 1]
+    ["18CPC39", 1],
 
-    ["18CS41", 3],
+    ["18MAT41", 3],
     ["18CS42", 4],
     ["18CS43", 3],
     ["18CS44", 3],
