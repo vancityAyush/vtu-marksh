@@ -1,19 +1,17 @@
-import {useRouter} from 'next/router';
 import {token} from "@/lib/constants";
 
 export default function UserPage({data}) {
-    const router = useRouter();
-    const {usn} = router.query;
+    console.log(data.usn);
 
     return (
         <div>
-            <h1>Your USN: {usn}</h1>
+            <h1>Your USN: {data[0].usn}</h1>
         </div>
     );
 }
 
-export async function getServerSideProps() {
-    const data = await fetchResult(usn);
+export async function getServerSideProps({params}) {
+    const data = await handler(params.usn);
     return {
         props: {
             data,
@@ -22,7 +20,7 @@ export async function getServerSideProps() {
 }
 
 
-async function handler({usn}) {
+async function handler(usn) {
     const response = await fetchResult(usn);
     const result = await response.json();
     console.log(result);
@@ -32,7 +30,7 @@ async function handler({usn}) {
         const sem_result = await sem.json();
         subject.result = sem_result.subjects;
     }
-    return await result.json();
+    return await result;
 }
 
 async function fetchResult(usn) {
