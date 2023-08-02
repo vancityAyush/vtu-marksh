@@ -41,7 +41,10 @@ export default function UserPage({data}) {
                                     <div className="overflow-x-auto">
                                         <table className="table table-zebra">
                                             <caption className="text-xl mb-3"
-                                                     key={index}>Final Result
+                                                     key={index}>
+                                                {
+                                                    sem_result.exams.length > 1 ? "Consolidated Result" : sem_result.exams[0].resultMonthYear
+                                                }
                                             </caption>
                                             <thead>
                                             <tr>
@@ -77,6 +80,7 @@ export default function UserPage({data}) {
                             }
                             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-white"/>
                             {
+                                sem_result.exams.length > 1 &&
                                 sem_result.exams.map((exam, index) => (
                                     <div key={index} className="m-4">
                                         <div className="overflow-x-auto">
