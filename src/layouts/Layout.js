@@ -10,7 +10,7 @@ export default function Layout({children}) {
                 openGraph={{
                     url: "https://vtumarksh.vercel.app/",
                     title: "VTU Marksh",
-                    description: "Get your VTU marksheets in a jiffy",
+                    description: "Get your VTU marksheets in a jiffy. a Ayush Kumar Production",
                     type: "website",
                     site_name: "VTU Marksh",
                     images: [

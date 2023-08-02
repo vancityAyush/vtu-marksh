@@ -101,7 +101,7 @@ const getGradePoints = (grade) => {
         case "E":
             return 4;
         default:
-            return 0;
+            return "F";
     }
 }
 
