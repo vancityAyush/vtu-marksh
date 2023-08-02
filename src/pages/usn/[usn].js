@@ -1,5 +1,6 @@
 import {credits, token} from "@/lib/constants";
 import {NumberAnim} from "@/components/number_anim";
+import {Card, CardBody, CardFooter, Typography} from "@material-tailwind/react";
 
 export default function UserPage({data}) {
     return (
@@ -28,11 +29,24 @@ export default function UserPage({data}) {
                         <input type="checkbox" className="peer"/>
                         <div
                             className="collapse-title bg-gray-900 text-primary-content peer-checked:bg-gray-900 peer-checked:text-secondary-content">
-                            <div
-                                className="flex flex-col md:flex-row justify-between items-center space-x-20">
-                                <p className="text-2xl uppercase font-bold ml-5">Semester {sem_result.semester}</p>
-                                <p className="font-bold text-xl">SGPA {sem_result.sgpa}</p>
-                            </div>
+                            <Card>
+                                <CardBody>
+                                    <Typography variant="h5" color="blue-gray" className="mb-2 text-2xl">
+                                        Semester {sem_result.semester}
+                                    </Typography>
+                                </CardBody>
+                                <CardFooter className="pt-0 text-2xl">
+                                    <Typography>
+                                        SGPA {sem_result.sgpa}
+                                    </Typography>
+                                </CardFooter>
+                            </Card>
+
+                            {/*<div*/}
+                            {/*    className="flex flex-col md:flex-row justify-between items-center space-x-20">*/}
+                            {/*    <p className="text-2xl uppercase font-bold">Semester {sem_result.semester}</p>*/}
+                            {/*    <p className="font-bold text-xl">SGPA {sem_result.sgpa}</p>*/}
+                            {/*</div>*/}
                         </div>
                         <div
                             className="collapse-content bg-primary text-primary-content peer-checked:bg-gray-700 peer-checked:text-secondary-content">
@@ -78,7 +92,10 @@ export default function UserPage({data}) {
 
 
                             }
-                            <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-white"/>
+                            {
+                                sem_result.exams.length > 1 &&
+                                <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-white"/>
+                            }
                             {
                                 sem_result.exams.length > 1 &&
                                 sem_result.exams.map((exam, index) => (
