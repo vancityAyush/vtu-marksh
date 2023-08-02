@@ -1,50 +1,28 @@
 import {credits, token} from "@/lib/constants";
 
 export default function UserPage({data}) {
-    console.log(data);
-
     return (
         <div>
-            <h1>{data.usn}</h1>
+            <h1>USN : {data.usn}</h1>
             <h1>{data.name}</h1>
-            {
-                Object.entries(data.sem_results).map(([sem, sem_result]) => {
-                        return (
-                            <div key={sem}>
-                                <h1>{sem}</h1>
-                                <h2>SGPA : {
-                                    calculateSGPA(sem_result)
-                                }
-                                </h2>
-                                {
-                                    sem_result.map((exam) => {
-                                        return (
-                                            <div key={exam}>
-                                                <h2>{exam.resultMonthYear}</h2>
-                                                {
-                                                    // exam.subjects.map((subject) => {
-                                                    //         return (
-                                                    //             <div key={subject.subjectCode}>
-                                                    //                 <h3>{subject.subjectCode}</h3>
-                                                    //                 <h3>{subject.subjectName}</h3>
-                                                    //                 <h3>{subject.internalMarks}</h3>
-                                                    //                 <h3>{subject.externalMarks}</h3>
-                                                    //                 <h3>{subject.totalMarks}</h3>
-                                                    //                 <h3>{subject.result}</h3>
-                                                    //             </div>
-                                                    //         );
-                                                    //     }
-                                                    // )
-                                                }
-                                            </div>
-                                        );
-                                    })
-                                }
-                            </div>
-                        );
-                    }
-                )
-            }
+            <h1>CGPA : {data.cgpa}</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>Semester</th>
+                    <th>SGPA</th>
+                </tr>
+                </thead>
+                <tbody>
+                {Object.values(data.sem_results).map((sem_result, index) => (
+                    <tr key={index}>
+                        <td>Semester {sem_result.semester}</td>
+                        <td>{sem_result.sgpa}</td>
+                    </tr>
+                ))}
+                </tbody>
+
+            </table>
         </div>
     );
 }
@@ -67,9 +45,21 @@ function pointsToGrade(points) {
     }
 }
 
+function calculateCGPA(result) {
+    let totalCredits = 0;
+    let totalPoints = 0;
+    for (const sem_result of Object.values(result.sem_results)) {
+        calculateSGPA(sem_result);
+        totalCredits += sem_result.credits;
+        totalPoints += sem_result.credits * sem_result.sgpa;
+    }
+
+    result.cgpa = (totalPoints / totalCredits).toFixed(2);
+}
+
 function calculateSGPA(sem_result) {
     const subjects = new Map();
-    for (const exam of sem_result) {
+    for (const exam of sem_result.exams) {
         for (const subject of exam.subjects) {
             subjects.set(subject.subjectCode, subject);
         }
@@ -80,7 +70,9 @@ function calculateSGPA(sem_result) {
         totalCredits += credits.get(subject.subjectCode) * pointsToGrade(subject.total);
         totalPoints += credits.get(subject.subjectCode);
     }
-    return totalCredits / totalPoints;
+    sem_result.sgpa = (totalCredits / totalPoints).toFixed(2);
+    sem_result.credits = totalPoints;
+    sem_result.scoredCredits = totalCredits;
 }
 
 export async function getServerSideProps({params}) {
@@ -105,11 +97,17 @@ async function handler(usn) {
         const sem = await fetchSem({usn: semExam.usn, yearmonth: semExam.resultMonthYear, sem: semExam.semester});
         const sem_result = await sem.json();
         if (!sem_results.has(semExam.semester)) {
-            sem_results.set(semExam.semester, []);
+            sem_results.set(semExam.semester, {
+                semester: semExam.semester,
+                credits: 0,
+                sgpa: 0,
+                exams: [],
+            });
         }
-        sem_results.get(semExam.semester).push(sem_result);
+        sem_results.get(semExam.semester).exams.push(sem_result);
     }
     result.sem_results = Object.fromEntries(sem_results);
+    calculateCGPA(result);
     return result;
 }
 
