@@ -1,5 +1,7 @@
 import "@/styles/globals.css";
 import Layout from "@/layouts/Layout";
+import {Analytics} from "@vercel/analytics/react";
+
 
 export default function App({Component, pageProps}) {
     return (
@@ -7,6 +9,7 @@ export default function App({Component, pageProps}) {
             <Layout>
                 <Component {...pageProps} />
             </Layout>
+            <Analytics/>
         </>
     );
 }

@@ -172,4 +172,5 @@ body {
 th, tr, td {
     border: 1px solid white;
     padding: 8px 20px;
+    border-collapse: collapse;
 }

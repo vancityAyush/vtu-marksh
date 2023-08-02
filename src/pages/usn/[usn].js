@@ -1,47 +1,123 @@
 import {credits, token} from "@/lib/constants";
+import {NumberAnim} from "@/components/number_anim";
 
 export default function UserPage({data}) {
     return (
-        <div>
-            <h1>USN : {data.usn}</h1>
-            <h1>{data.name}</h1>
-            <h1>CGPA : {data.cgpa}</h1>
-            <table>
-                <thead>
-                <tr>
-                    <th>Semester</th>
-                    <th>SGPA</th>
-                </tr>
-                </thead>
-                <tbody>
-                {Object.values(data.sem_results).map((sem_result, index) => (
-                    <tr key={index}>
-                        <td>Semester {sem_result.semester}</td>
-                        <td>{sem_result.sgpa}</td>
-                    </tr>
-                ))}
-                </tbody>
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+            <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+                <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 ">
+                    VTU Results for {data.name}
+                </p>
+                <div
+                    className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+                    <p className="text-2xl">USN : {data.usn}</p>
+                </div>
+            </div>
+            <div>
+                <div className="stat">
+                    <div className="stat-title">CGPA</div>
+                    <div className="stat-value text-8xl">
+                        <NumberAnim num={data.cgpa}/>
+                    </div>
+                </div>
+            </div>
 
-            </table>
-        </div>
+            <div className="mt-2 mb-2">
+                {Object.values(data.sem_results).map((sem_result, index) => (
+                    <div key={index} className="collapse bg-base-800 m-2 ">
+                        <input type="checkbox" className="peer"/>
+                        <div
+                            className="collapse-title bg-gray-900 text-primary-content peer-checked:bg-gray-900 peer-checked:text-secondary-content">
+                            <div
+                                className="flex flex-col md:flex-row justify-between items-center space-x-20">
+                                <p className="text-2xl uppercase font-bold ml-5">Semester {sem_result.semester}</p>
+                                <p className="font-bold text-xl">SGPA {sem_result.sgpa}</p>
+                            </div>
+                        </div>
+                        <div
+                            className="collapse-content bg-primary text-primary-content peer-checked:bg-gray-700 peer-checked:text-secondary-content">
+                            {
+                                sem_result.exams.map((exam, index) => (
+                                    <div key={index} className="m-4">
+                                        <div className="overflow-x-auto">
+                                            <table className="table table-zebra">
+                                                <caption className="text-xl mb-3"
+                                                         key={index}>{exam.resultMonthYear}</caption>
+                                                <thead>
+                                                <tr>
+                                                    <th>Subject Code</th>
+                                                    <th>Subject Name</th>
+                                                    <th>IA Marks</th>
+                                                    <th>External Marks</th>
+                                                    <th>Total</th>
+                                                    <th>Result</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {
+                                                    exam.subjects.map((subject, index) => (
+                                                        <tr key={index}>
+                                                            <th>{subject.subjectCode}</th>
+                                                            <th>{subject.subjectName}</th>
+                                                            <th>{subject.iaMarks}</th>
+                                                            <th>{subject.eMarks}</th>
+                                                            <th>{subject.total}</th>
+                                                            <th>{subject.result}</th>
+                                                        </tr>
+                                                    ))
+                                                }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                ))
+                            }
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div>
+            </div>
+        </main>
     );
 }
 
-function pointsToGrade(points) {
+
+const getGradePoints = (grade) => {
+    switch (grade) {
+        case "S":
+            return 10;
+        case "A":
+            return 9;
+        case "B":
+            return 8;
+        case "C":
+            return 7;
+        case "D":
+            return 6;
+        case "E":
+            return 4;
+        default:
+            return 0;
+    }
+}
+
+function getGrade(points) {
     if (points >= 90) {
-        return 10;
+        return "S";
     } else if (points >= 80) {
-        return 9;
+        return "A";
     } else if (points >= 70) {
-        return 8;
+        return "B";
     } else if (points >= 60) {
-        return 7;
+        return "C";
     } else if (points >= 50) {
-        return 6;
+        return "D";
     } else if (points >= 40) {
-        return 4;
+        return "E";
     } else {
-        return 0;
+        return "F";
     }
 }
 
@@ -67,7 +143,8 @@ function calculateSGPA(sem_result) {
     let totalCredits = 0;
     let totalPoints = 0;
     for (const subject of subjects.values()) {
-        totalCredits += credits.get(subject.subjectCode) * pointsToGrade(subject.total);
+        subject.grade = getGrade(subject.total);
+        totalCredits += credits.get(subject.subjectCode) * getGradePoints(subject.grade);
         totalPoints += credits.get(subject.subjectCode);
     }
     sem_result.sgpa = (totalCredits / totalPoints).toFixed(2);
