@@ -1,8 +1,13 @@
 import {credits, token} from "@/lib/constants";
 import {NumberAnim} from "@/components/number_anim";
-import {Card, CardBody, CardFooter, Typography} from "@material-tailwind/react";
+import {useState} from "react";
 
 export default function UserPage({data}) {
+    const [expanded, setExpanded] = useState(false);
+
+    const handleChange = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24 w-screen overflow-hidden">
             <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -29,31 +34,18 @@ export default function UserPage({data}) {
                         <input type="checkbox" className="peer"/>
                         <div
                             className="collapse-title bg-gray-900 text-primary-content peer-checked:bg-gray-900 peer-checked:text-secondary-content">
-                            <Card>
-                                <CardBody>
-                                    <Typography variant="h5" color="blue-gray" className="mb-2 text-2xl">
-                                        Semester {sem_result.semester}
-                                    </Typography>
-                                </CardBody>
-                                <CardFooter className="pt-0 text-2xl">
-                                    <Typography>
-                                        SGPA {sem_result.sgpa}
-                                    </Typography>
-                                </CardFooter>
-                            </Card>
-
-                            {/*<div*/}
-                            {/*    className="flex flex-col md:flex-row justify-between items-center space-x-20">*/}
-                            {/*    <p className="text-2xl uppercase font-bold">Semester {sem_result.semester}</p>*/}
-                            {/*    <p className="font-bold text-xl">SGPA {sem_result.sgpa}</p>*/}
-                            {/*</div>*/}
+                            <div
+                                className="flex flex-col md:flex-row justify-between items-center space-x-20">
+                                <p className="text-2xl uppercase font-bold">Semester {sem_result.semester}</p>
+                                <p className="font-bold text-xl">SGPA {sem_result.sgpa}</p>
+                            </div>
                         </div>
                         <div
                             className="collapse-content bg-primary text-primary-content peer-checked:bg-gray-700 peer-checked:text-secondary-content">
                             {
                                 <div key={index} className="m-4">
-                                    <div className="overflow-x-auto">
-                                        <table className="table table-zebra">
+                                    <div className="overflow-auto">
+                                        <table className="table table-zebra table-auto overflow-scroll w-full">
                                             <caption className="text-xl mb-3"
                                                      key={index}>
                                                 {
