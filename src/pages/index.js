@@ -9,7 +9,7 @@ export default function Home() {
         const data = new FormData(event.target);
         const value = Object.fromEntries(data.entries());
         console.log(value);
-        router.push('/usn/' + value.usn);
+        router.push('/usn/' + value.usn.toUpperCase());
     }
 
     return (
