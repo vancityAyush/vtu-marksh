@@ -2,14 +2,18 @@
 import {useRouter} from "next/navigation";
 
 export default function Home() {
-
+    const regex = /^[0-9][a-zA-Z]\w{1}\d{2}[a-zA-Z]\w{1}\d{3}$/;
     const router = useRouter();
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
         const value = Object.fromEntries(data.entries());
-        console.log(value);
-        router.push('/usn/' + value.usn.toUpperCase());
+        const usn = value.usn.toUpperCase().trim();
+        if (!regex.test(usn)) {
+            alert("Invalid USN");
+            return;
+        }
+        router.push('/usn/' + usn);
     }
 
     return (
