@@ -5,12 +5,12 @@ export default function Layout({children}) {
         <>
             <NextSeo
                 title="VTU Marksh"
-                description="PySphere revolutionizes digital transformation for startups and established businesses, empowering growth through innovative solutions and expert guidance."
+                description="a Ayush Kumar Production"
                 canonical="https://vtumarksh.vercel.app/"
                 openGraph={{
                     url: "https://vtumarksh.vercel.app/",
                     title: "VTU Marksh",
-                    description: "Get your Marks Card here",
+                    description: "Get your VTU marksheets in a jiffy",
                     type: "website",
                     site_name: "VTU Marksh",
                     images: [

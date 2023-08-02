@@ -50,6 +50,7 @@ export default function UserPage({data}) {
                                                     <th>IA Marks</th>
                                                     <th>External Marks</th>
                                                     <th>Total</th>
+                                                    <th>Grade</th>
                                                     <th>Result</th>
                                                 </tr>
                                                 </thead>
@@ -62,6 +63,7 @@ export default function UserPage({data}) {
                                                             <th>{subject.iaMarks}</th>
                                                             <th>{subject.eMarks}</th>
                                                             <th>{subject.total}</th>
+                                                            <th>{subject.grade}</th>
                                                             <th>{subject.result}</th>
                                                         </tr>
                                                     ))

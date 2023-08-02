@@ -26,8 +26,7 @@ export default function Home() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        By{' '}
-                        Ayush Kumar
+                        a Ayush Kumar Production
                         {/*<Image*/}
                         {/*  src="/vercel.svg"*/}
                         {/*  alt="Vercel Logo"*/}
