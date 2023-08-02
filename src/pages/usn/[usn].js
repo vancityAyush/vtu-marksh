@@ -24,7 +24,7 @@ export default function UserPage({data}) {
 
             <div className="mt-2 mb-2">
                 {Object.values(data.sem_results).map((sem_result, index) => (
-                    <div key={index} className="collapse bg-base-800 m-2 ">
+                    <div key={index} className="collapse bg-base-800 m-4 ">
                         <input type="checkbox" className="peer"/>
                         <div
                             className="collapse-title bg-gray-900 text-primary-content peer-checked:bg-gray-900 peer-checked:text-secondary-content">
@@ -36,6 +36,46 @@ export default function UserPage({data}) {
                         </div>
                         <div
                             className="collapse-content bg-primary text-primary-content peer-checked:bg-gray-700 peer-checked:text-secondary-content">
+                            {
+                                <div key={index} className="m-4">
+                                    <div className="overflow-x-auto">
+                                        <table className="table table-zebra">
+                                            <caption className="text-xl mb-3"
+                                                     key={index}>Final Result
+                                            </caption>
+                                            <thead>
+                                            <tr>
+                                                <th>Subject Code</th>
+                                                <th>Subject Name</th>
+                                                <th>IA Marks</th>
+                                                <th>External Marks</th>
+                                                <th>Total</th>
+                                                <th>Grade</th>
+                                                <th>Result</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {
+                                                Object.values(sem_result.finalResults).map((subject, index) => (
+                                                    <tr key={index}>
+                                                        <th>{subject.subjectCode}</th>
+                                                        <th>{subject.subjectName}</th>
+                                                        <th>{subject.iaMarks}</th>
+                                                        <th>{subject.eMarks}</th>
+                                                        <th>{subject.total}</th>
+                                                        <th>{subject.grade}</th>
+                                                        <th>{subject.result}</th>
+                                                    </tr>
+                                                ))
+                                            }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            }
+                            <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-white"/>
                             {
                                 sem_result.exams.map((exam, index) => (
                                     <div key={index} className="m-4">
@@ -101,7 +141,7 @@ const getGradePoints = (grade) => {
         case "E":
             return 4;
         default:
-            return "F";
+            return 0;
     }
 }
 
@@ -152,6 +192,7 @@ function calculateSGPA(sem_result) {
     sem_result.sgpa = (totalCredits / totalPoints).toFixed(2);
     sem_result.credits = totalPoints;
     sem_result.scoredCredits = totalCredits;
+    sem_result.finalResults = Object.fromEntries(subjects);
 }
 
 export async function getServerSideProps({params}) {
@@ -181,6 +222,7 @@ async function handler(usn) {
                 credits: 0,
                 sgpa: 0,
                 exams: [],
+                finalResults: {},
             });
         }
         sem_results.get(semExam.semester).exams.push(sem_result);
