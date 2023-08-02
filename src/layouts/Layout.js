@@ -15,8 +15,10 @@ export default function Layout({children}) {
                     site_name: "VTU Marksh",
                     images: [
                         {
-                            url: "https://vtumarksh.vercel.app/logo.svg",
-                            alt: "VTU MarkSH",
+                            url: "https://vtumarksh.vercel.app/assets/img.png",
+                            width: 800,
+                            height: 600,
+                            alt: "VTU Marksh",
                             type: "image/png",
                         },
                     ],
