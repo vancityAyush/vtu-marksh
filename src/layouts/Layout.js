@@ -14,13 +14,11 @@ export default function Layout({children}) {
                     type: "website",
                     site_name: "VTU Marksh",
                     images: [
-                        // {
-                        //     url: "https://pysphere.vercel.app/assets/seo/pysphere.png",
-                        //     width: 800,
-                        //     height: 600,
-                        //     alt: "PySphere Technologies",
-                        //     type: "image/png",
-                        // },
+                        {
+                            url: "https://vtumarksh.vercel.app/logo.svg",
+                            alt: "VTU MarkSH",
+                            type: "image/png",
+                        },
                     ],
                 }}
             />
