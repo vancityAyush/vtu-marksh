@@ -139,6 +139,7 @@ export const credits = new Map([
     ["21CSL35", 1],
     ["21SCR36", 1],
     ["21CSL381", 1],
+    ["21CIP37", 1],
     ["21CS382", 1],
 
     ["21MAT41", 3],
