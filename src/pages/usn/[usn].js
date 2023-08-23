@@ -1,7 +1,6 @@
 import {credits, token} from "@/lib/constants";
-import {NumberAnim} from "@/components/number_anim";
 import {useState} from "react";
-import {SemesterCard} from "@/components/semester_card";
+import {NumberAnim} from "@/components/number_anim";
 
 export default function UserPage({data}) {
     const [expanded, setExpanded] = useState(false);
@@ -16,7 +15,7 @@ export default function UserPage({data}) {
                     VTU Results for {data.name}
                 </p>
                 <div
-                    className="fixed bottom-0 left-0 flex h-18 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+                    className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
                     <p className="text-2xl">USN : {data.usn}</p>
                 </div>
             </div>
@@ -27,19 +26,110 @@ export default function UserPage({data}) {
                         <NumberAnim num={data.cgpa}/>
                     </div>
                 </div>
-                <h1>
-                    <div className="stat">
-                        <div className="stat-title">Backlogs</div>
-                        <div className="stat-value text-8xl">
-                            <NumberAnim num={data.backlogs}/>
-                        </div>
-                    </div>
-                </h1>
             </div>
 
             <div className="m-5">
                 {Object.values(data.sem_results).map((sem_result, index) => (
-                    <SemesterCard key={index} sem_result={sem_result}/>
+                    <div key={index} className="collapse bg-base-800 m-4 ">
+                        <input type="checkbox" className="peer"/>
+                        <div
+                            className="collapse-title bg-gray-900 text-primary-content peer-checked:bg-gray-900 peer-checked:text-secondary-content">
+                            <div
+                                className="flex flex-col md:flex-row justify-between items-center space-x-20">
+                                <p className="text-2xl uppercase font-bold">Semester {sem_result.semester}</p>
+                                <p className="font-bold text-xl">SGPA {sem_result.sgpa}</p>
+                            </div>
+                        </div>
+                        <div
+                            className="collapse-content bg-primary text-primary-content peer-checked:bg-gray-700 peer-checked:text-secondary-content">
+                            {
+                                <div key={index} className="m-4">
+                                    <div className="overflow-auto">
+                                        <table className="table table-zebra table-auto overflow-scroll w-full">
+                                            <caption className="text-xl mb-3"
+                                                     key={index}>
+                                                {
+                                                    sem_result.exams.length > 1 ? "Consolidated Result" : sem_result.exams[0].resultMonthYear
+                                                }
+                                            </caption>
+                                            <thead>
+                                            <tr>
+                                                <th>Subject Code</th>
+                                                <th>Subject Name</th>
+                                                <th>IA Marks</th>
+                                                <th>External Marks</th>
+                                                <th>Total</th>
+                                                <th>Grade</th>
+                                                <th>Result</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {
+                                                Object.values(sem_result.finalResults).map((subject, index) => (
+                                                    <tr key={index}>
+                                                        <th>{subject.subjectCode}</th>
+                                                        <th>{subject.subjectName}</th>
+                                                        <th>{subject.iaMarks}</th>
+                                                        <th>{subject.eMarks}</th>
+                                                        <th>{subject.total}</th>
+                                                        <th>{subject.grade}</th>
+                                                        <th>{subject.result}</th>
+                                                    </tr>
+                                                ))
+                                            }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            }
+                            {
+                                sem_result.exams.length > 1 &&
+                                <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-white"/>
+                            }
+                            {
+                                sem_result.exams.length > 1 &&
+                                sem_result.exams.map((exam, index) => (
+                                    <div key={index} className="m-4">
+                                        <div className="overflow-x-auto">
+                                            <table className="table table-zebra">
+                                                <caption className="text-xl mb-3"
+                                                         key={index}>{exam.resultMonthYear}</caption>
+                                                <thead>
+                                                <tr>
+                                                    <th>Subject Code</th>
+                                                    <th>Subject Name</th>
+                                                    <th>IA Marks</th>
+                                                    <th>External Marks</th>
+                                                    <th>Total</th>
+                                                    <th>Grade</th>
+                                                    <th>Result</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {
+                                                    exam.subjects.map((subject, index) => (
+                                                        <tr key={index}>
+                                                            <th>{subject.subjectCode}</th>
+                                                            <th>{subject.subjectName}</th>
+                                                            <th>{subject.iaMarks}</th>
+                                                            <th>{subject.eMarks}</th>
+                                                            <th>{subject.total}</th>
+                                                            <th>{subject.grade}</th>
+                                                            <th>{subject.result}</th>
+                                                        </tr>
+                                                    ))
+                                                }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                ))
+                            }
+                        </div>
+                    </div>
                 ))}
             </div>
             <div>

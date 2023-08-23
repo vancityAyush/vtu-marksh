@@ -1,4 +1,4 @@
-export const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDkxZTRjZTM4MzZiNGE4YWYwMjg1YyIsImF2YXRhciI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDR2MGt1ekN0MTBsNVZkMHBxWC03QzlpZ0tzYXhRNWVKMTRUbWJ5M0E9czk2LWMiLCJmdWxsTmFtZSI6IlNpZGRoYXJ0aCBNaXNocmEiLCJlbWFpbCI6InNpZGRoYXJ0aG1pc2hyYTkxOEBnbWFpbC5jb20iLCJzY29wZSI6WyJ1c2VyIl0sInVzbiI6IjFBTTIwQ1MxODUiLCJjbGFzc0lkIjoiMUFNMjBDUyIsImNvbGxlZ2UiOiJBTUMgRU5HSU5FRVJJTkcgQ09MTEVHRSAiLCJzY2hlbWUiOiIyMDE4Iiwic2VtZXN0ZXIiOiJWIiwiYnJhbmNoIjoiQ1NFIiwidHlwZSI6InN0dWRlbnQiLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTY5MTkzODMzOCwiZXhwIjoxNjkyNTQzMTM4fQ.xgEFm-3W1YYtYyv2SkrMpTx84nVSgtc8N-RXxa590SY";
+export const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDkxZTRjZTM4MzZiNGE4YWYwMjg1YyIsImF2YXRhciI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDR2MGt1ekN0MTBsNVZkMHBxWC03QzlpZ0tzYXhRNWVKMTRUbWJ5M0E9czk2LWMiLCJmdWxsTmFtZSI6IlNpZGRoYXJ0aCBNaXNocmEiLCJlbWFpbCI6InNpZGRoYXJ0aG1pc2hyYTkxOEBnbWFpbC5jb20iLCJzY29wZSI6WyJ1c2VyIl0sInVzbiI6IjFBTTIwQ1MxODUiLCJjbGFzc0lkIjoiMUFNMjBDUyIsImNvbGxlZ2UiOiJBTUMgRU5HSU5FRVJJTkcgQ09MTEVHRSAiLCJzY2hlbWUiOiIyMDE4Iiwic2VtZXN0ZXIiOiJWIiwiYnJhbmNoIjoiQ1NFIiwidHlwZSI6InN0dWRlbnQiLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTY5MjIxMzA5OCwiZXhwIjoxNjkyODE3ODk4fQ.6uUgCKxPP4Z11i49upW6bxKyeKGaeKXylgELQS7Wejk"
 export const credits = new Map([
 
     ["18MAT11", 4],
@@ -7,7 +7,7 @@ export const credits = new Map([
     ["18CIV14", 3],
     ["18EGDL15", 3],
     ["18PHYL16", 1],
-    ["18ELEL17", 1], 
+    ["18ELEL17", 1],
     ["18CHE12", 4],
     ["18CPS13", 3],
     ["18ELN14", 3],
@@ -23,12 +23,12 @@ export const credits = new Map([
     ["18ME25", 3],
     ["18CHEL26", 1],
     ["18CPL27", 1],
-     ["18PHY22", 4],
+    ["18PHY22", 4],
     ["18ELE23", 3],
     ["18CIV24", 3],
     ["18EGDL25", 3],
     ["18PHYL26", 1],
-    ["18ELEL27", 1], 
+    ["18ELEL27", 1],
     ["18EGH28", 1],
 
     ["18MAT31", 3],
@@ -80,7 +80,7 @@ export const credits = new Map([
     ["18CSL66", 2],
     ["18CSL67", 2],
     ["18CSMP68", 2],
-
+    ["18CV654", 3],
     ["18CS71", 4],
     ["18CS72", 4],
     ["18CS731", 3],
@@ -176,17 +176,17 @@ export const credits = new Map([
     ["18ECS84", 1],
     ["18ECI85", 3],
 
-    ["18AI51",3],
-    ["18AI52",4],
-    ["18AI53",4],
-    ["18AI54",3],
-    ["18AI55",3],
-    ["18AI56",3],
-    ["18AIL57",2],
-    
-    ["18AI61",4],
-    ["18AI62",4],
-    ["18AI63",3],
+    ["18AI51", 3],
+    ["18AI52", 4],
+    ["18AI53", 4],
+    ["18AI54", 3],
+    ["18AI55", 3],
+    ["18AI56", 3],
+    ["18AIL57", 2],
+
+    ["18AI61", 4],
+    ["18AI62", 4],
+    ["18AI63", 3],
     ["18AI641", 3],
     ["18AI642", 3],
     ["18AI643", 3],
@@ -225,7 +225,6 @@ export const credits = new Map([
     ["18AIP83", 8],
     ["18AIS84", 1],
     ["18AII85", 3],
-
 
 
     ["21MAT11", 3],
