@@ -27,6 +27,7 @@ export default function UserPage({data}) {
                     </div>
                 </div>
             </div>
+            
 
             <div className="m-5">
                 {Object.values(data.sem_results).map((sem_result, index) => (
@@ -40,6 +41,7 @@ export default function UserPage({data}) {
                                 <p className="font-bold text-xl">SGPA {sem_result.sgpa}</p>
                             </div>
                         </div>
+
                         <div
                             className="collapse-content bg-primary text-primary-content peer-checked:bg-gray-700 peer-checked:text-secondary-content">
                             {
