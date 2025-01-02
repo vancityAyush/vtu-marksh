@@ -1,5 +1,6 @@
 'use client';
 import {useRouter} from "next/navigation";
+import {useEffect} from "react";
 
 export default function Home() {
     const regex = /^[0-9][a-zA-Z]\w{1}\d{2}[a-zA-Z]\w{1}\d{3}$/;
@@ -15,7 +16,18 @@ export default function Home() {
         }
         router.push('/usn/' + usn);
     }
-
+    useEffect(() => {
+        const callApi = async () => {
+            try {
+                const response = await fetch('/api');
+                const data = await response.json();
+                console.log('API response:', data);
+            } catch (error) {
+                console.error('Error calling API:', error);
+            }
+        };
+        callApi();
+    }, []);
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
             <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
